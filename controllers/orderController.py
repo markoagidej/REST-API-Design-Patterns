@@ -1,5 +1,5 @@
 from flask import request, jsonify
-from models.schemas.orderSchema import order_schema
+from models.schemas.orderSchema import order_schema, orders_schema
 from services import orderService
 from marshmallow import ValidationError
 
@@ -11,3 +11,11 @@ def save():
     
     order_save = orderService.save(order_data)
     return order_schema.jsonify(order_save), 201
+
+def getAll():
+    try:
+        orders = orderService.getAll()
+        return orders_schema.jsonify(orders), 201
+    except ValidationError as err:
+        return jsonify(err.messages), 400
+    

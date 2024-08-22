@@ -11,3 +11,9 @@ def save(employee_data):
 
         session.refresh(new_employee)
         return new_employee
+    
+def getAll():
+    with Session(db.engine) as session:
+        employees = session.query(Employee).all()
+        print(employees)
+        return employees

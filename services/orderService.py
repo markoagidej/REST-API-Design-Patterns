@@ -11,3 +11,9 @@ def save(order_data):
 
         session.refresh(new_order)
         return new_order
+    
+def getAll():
+    with Session(db.engine) as session:
+        orders = session.query(Order).all()
+        print(orders)
+        return orders

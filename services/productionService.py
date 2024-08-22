@@ -12,3 +12,9 @@ def save(production_data):
 
         session.refresh(new_production)
         return new_production
+    
+def getAll():
+    with Session(db.engine) as session:
+        productions = session.query(Production).all()
+        print(productions)
+        return productions

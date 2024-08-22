@@ -11,3 +11,9 @@ def save(product_data):
 
         session.refresh(new_product)
         return new_product
+    
+def getAll():
+    with Session(db.engine) as session:
+        products = session.query(Product).all()
+        print(products)
+        return products

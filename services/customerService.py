@@ -11,3 +11,9 @@ def save(customer_data):
 
         session.refresh(new_customer)
         return new_customer
+    
+def getAll():
+    with Session(db.engine) as session:
+        customers = session.query(Customer).all()
+        print(customers)
+        return customers
